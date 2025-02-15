@@ -1,0 +1,26 @@
+/* 홈 전체 스타일 */
+.home {
+  width: 100%;
+  background-color: #fff;
+}
+
+/* 배너 컨테이너 */
+.banner-container {
+  position:relative; /* ✅ 컨테이너를 기준으로 배너 이미지 배치 */
+  height: 500px; /* ✅ 배너 높이 설정 */
+  overflow: hidden;
+}
+
+/* 배너 이미지 */
+.banner-image {
+  position:fixed;
+  width: 100%;
+  object-fit: contain; /* ✅ 배너가 화면에 꽉 차게 */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* 활성화된 배너 */
+.banner-image.active {
+  opacity: 1;
+}

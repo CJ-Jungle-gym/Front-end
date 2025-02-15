@@ -1,19 +1,18 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
-import About from "../pages/About";
-import Contact from "../pages/Contact";
-import NotFound from "../pages/NotFound";
-// import MainLayout from "../layouts/MainLayout";
+import Login from "../pages/Login";
+import Event from "../pages/Event";
+import MainLayout from "../layouts/MainLayout";
 
 function Router() {
-  return (
-    <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
-}
-
-export default Router;
+    return (
+      <Routes>
+        <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+        <Route path="/login" element={<MainLayout><Login /></MainLayout>} />
+        <Route path="/event" element={<MainLayout><Event /></MainLayout>} />
+      </Routes>
+    );
+  }
+  
+  export default Router;
+  
