@@ -1,0 +1,152 @@
+/* 로그인 컨테이너 */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120vh;
+    background-color: #fff;
+  }
+  
+  /* 로그인 박스 */
+  .login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+  }
+  
+  /* 로그인 제목 */
+  .login-title {
+    font-size: 28px;
+    font-weight: bold;
+    height: 60px;
+    color: black;
+  }
+  
+  /* 로그인 폼 */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* 입력 필드 */
+  .login-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+  }
+  
+  /* 로그인 옵션 */
+  .login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin: 10px 0;
+  }
+  
+  /* 체크박스 스타일 */
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-container input {
+    margin-right: 5px;
+  }
+  
+  /* 아이디/비밀번호 찾기 */
+  .find-links {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .find-links a {
+    text-decoration: none;
+    color: #666;
+  }
+  
+  .find-links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* 로그인 버튼 */
+  .login-button {
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .login-button:hover {
+    background-color: #333;
+  }
+  
+  /* 카카오 로그인 버튼 */
+  .kakao-button {
+    width: 100%;
+    background-color: #ffeb00;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .kakao-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  /* CJ ONE 회원가입 안내 */
+  .cj-one-section {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .cj-one-logo {
+    width: 80px;
+    margin-bottom: 10px;
+  }
+  
+  .cj-one-text {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  /* 회원가입 버튼 */
+  .signup-button {
+    width: 100%;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .signup-button:hover {
+    background-color: #f2f2f2;
+  }  
