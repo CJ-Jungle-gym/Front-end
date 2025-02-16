@@ -6,8 +6,15 @@ import image3 from "../assets/main-banner3.png";
 import image4 from "../assets/main-banner4.png";
 import image5 from "../assets/main-banner5.png";
 import image6 from "../assets/main-banner6.png";
+import image7 from "../assets/main-banner7.png";
+import image8 from "../assets/main-banner8.png";
+import image9 from "../assets/main-banner9.png";
+import image10 from "../assets/main-banner10.png";
+import image11 from "../assets/main-banner11.png";
 
-const bannerImages = [image1, image2, image3, image4, image5, image6];
+
+const bannerImages = [image1, image2, image3, image4, image5, image6,
+  image7, image8, image8, image9, image10, image11];
 
 function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
