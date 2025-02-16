@@ -8,6 +8,7 @@ body {
 /* 전체 헤더 스타일 */
 .header {
     width: 100%;
+    max-width: 100vw;
     background-color: white;
     font-family: Arial, sans-serif;
     position: fixed;

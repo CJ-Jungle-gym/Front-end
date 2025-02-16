@@ -1,0 +1,42 @@
+/* 전체 레이아웃 */
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* ✅ 가로 여백 제거 */
+}
+
+/* 초기 상태 - 요소가 보이지 않음 */
+.header-wrapper,
+.content,
+.footer-wrapper {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* 요소가 화면에 나타나면 적용 */
+.header-wrapper.visible,
+.content.visible,
+.footer-wrapper.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Header */
+.header-wrapper {
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Footer */
+.footer-wrapper {
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+}
