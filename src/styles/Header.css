@@ -38,13 +38,6 @@ body {
     margin: 0 5px;
 }
 
-/* 버튼 hover 효과 */
-.top-nav button:hover {
-    display: flex;
-    color: black;
-    text-decoration: underline;
-}
-
 /* 메인 헤더 */
 .main-header {
     display: flex;
