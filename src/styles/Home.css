@@ -9,7 +9,7 @@
 .banner-container {
   position: relative; /* ✅ 컨테이너를 기준으로 배너 이미지 배치 */
   width: 100%;
-  height: 1000px;
+  height: 700px;
   overflow: hidden;
 }
 
@@ -17,7 +17,7 @@
 .banner-image {
   position: absolute;
   width: 100%;
-  height: 80%;
+  height: 115%;
   object-fit: contain; /* ✅ 배너가 비율을 유지하며 화면을 꽉 채움 */
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -26,4 +26,96 @@
 /* 활성화된 배너 */
 .banner-image.active {
   opacity: 1;
+}
+
+/* 콜라보 이벤트 섹션 */
+.collab-event {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+  margin-bottom: 100px;
+  width: 100%;
+}
+
+/* 이벤트 배경 */
+.event-bg {
+  position: relative;
+  width: 50%; /* ✅ 기존 60%에서 80%로 늘림 */
+  max-width: 1400px; /* ✅ 최대 길이도 늘려줌 */
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.event-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 이벤트 내용 */
+.event-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
+
+.event-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.event-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* 이벤트 버튼 */
+.event-button {
+  background-color: #ffcc00;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.event-button:hover {
+  background-color: #ff9900;
+  color: white;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .event-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .event-title {
+    font-size: 24px;
+  }
+
+  .event-description {
+    font-size: 14px;
+  }
+
+  .event-button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
 }
