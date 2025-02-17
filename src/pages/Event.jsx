@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Event.css";
+import { getProducts } from "../api/event";
+
 import eventBanner from "../assets/homeAssets/event-banner.jpg";
 import kpopStar from "../assets/eventAssets/kpop-star.jpg";
 import product1 from "../assets/eventAssets/product1.jpg";
@@ -37,17 +39,26 @@ const tempProducts = [
 ];
 
 function Event() {
-  const [products, setProducts] = useState([]); // ✅ API에서 가져올 제품 목록
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [purchased, setPurchased] = useState({});
+  const [products, setProducts] = useState([]);  // ✅ API에서 받아올 제품 목록
+  const [loading, setLoading] = useState(true);  // ✅ 로딩 상태
+  const [error, setError] = useState(null);      // ✅ 에러 상태
+  const [purchased, setPurchased] = useState({}); // ✅ 구매 여부 저장
+
+  // react-Helmet 대체
+  useEffect(() => {
+    document.title = "특별 이벤트 | 올리브영 - JG"; // ✅ 페이지 제목 변경
+
+    return () => {
+      document.title = "올리브영 온라인몰 - JG"; // ✅ 페이지 떠날 때 기본값으로 변경
+    };
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const data = await getEvents(); // ✅ 백엔드에서 이벤트 제품 가져오기
-        setProducts(data); // ✅ 가져온 데이터 저장
+        const data = await getProducts(); // ✅ 백엔드에서 이벤트 제품 가져오기
+        setProducts(data.content || []);  // ✅ 백엔드 응답 데이터에서 content 배열 가져오기
       } catch (err) {
         console.error("❌ 이벤트 불러오기 실패:", err);
         setError("이벤트 데이터를 불러오는데 실패했습니다.");
@@ -94,7 +105,7 @@ function Event() {
           <p>🔄 제품을 불러오는 중...</p>
         ) : error ? (
           <>
-            <p className="error-message">⚠️ 현재 문제 발생하여, 임시 상품으로 대체됩니다.</p>
+            <p className="error-message">⚠️ 문제가 발생하여, 임시 상품으로 대체됩니다.</p>
 
             {/* 🚀 에러 메시지와 상품 리스트 사이에 줄바꿈 추가 */}
             <div className="product-wrapper">
@@ -117,7 +128,7 @@ function Event() {
             </div>
           </>
         ) : products.length === 0 ? (
-          <p>현재 등록된 이벤트 제품이 없습니다=.</p>
+          <p className="noProducts">현재 등록된 이벤트 제품이 없습니다=.</p>
         ) : (
           products.map((product) => (
             <div key={product.id} className="product-card">

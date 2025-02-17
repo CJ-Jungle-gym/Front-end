@@ -3,34 +3,45 @@ import { login } from "../api/auth";
 import "../styles/Login.css";
 import cjOneLogo from "../assets/loginAssets/cjone-logo.png";
 import kakaoIcon from "../assets/loginAssets/kakao-icon.png";
-import { checkServerHealth, loginTest, fetchEvents } from "../api/api";
-
 
 function Login() {
-  const [formData, setFormData] = useState({ loginId: "", password: "" });
+  const [formData, setFormData] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
+
+
+  // react-Helmet 대체
+  useEffect(() => {
+    document.title = "로그인 | 올리브영 - JG"; // ✅ 페이지 제목 변경
+
+    return () => {
+      document.title = "올리브영 온라인몰 - JG"; // ✅ 페이지 떠날 때 기본값으로 변경
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // 기본 폼 제출 동작 방지
+  
     try {
-      await login(formData);
+      const loginData = {
+        username: formData.username,
+        password: formData.password
+      };
+  
+      const response = await login(loginData); // 로그인 API 호출
+      console.log("✅ 로그인 성공:", response); // 응답 확인
+  
       alert("로그인 성공!");
-      window.location.href = "/";
+      window.location.href = "/"; // 메인 페이지 이동
     } catch (error) {
+      console.error("❌ 로그인 실패:", error.response?.data || error.message);
       setErrorMessage("로그인 실패! 아이디 또는 비밀번호를 확인해주세요.");
     }
   };
-
-  useEffect(() => {
-    checkServerHealth(); // 서버 상태 체크
-    loginTest(); // 로그인 테스트
-    fetchEvents(); // 이벤트 목록 불러오기
-  }, []);
-
 
   return (
     <div className="login-container">
@@ -38,12 +49,12 @@ function Login() {
         <h2 className="login-title">로그인</h2>
 
         {/* 로그인 폼 */}
-        <form className="login-form" onSubmit={ handleLogin }>
+        <form className="login-form" onSubmit={handleLogin}>
           <input
             type="text"
-            name="loginId"
-            palceholder="CJ ONE 통합회원 아이디"
-            value={formData.loginId}
+            name="username"
+            placeholder="CJ ONE 통합회원 아이디"
+            value={formData.username}
             onChange={handleChange}
             className="login-input"
           />
