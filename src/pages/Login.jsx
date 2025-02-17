@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { login } from "../api/auth";
 import "../styles/Login.css";
-import cjOneLogo from "../assets/cjone-logo.png";
-import kakaoIcon from "../assets/kakao-icon.png";
+import cjOneLogo from "../assets/loginAssets/cjone-logo.png";
+import kakaoIcon from "../assets/loginAssets/kakao-icon.png";
 import { checkServerHealth, loginTest, fetchEvents } from "../api/api";
 
 
