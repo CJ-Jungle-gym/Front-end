@@ -31,7 +31,7 @@ pipeline {
                     sh 'npx sonar-scanner \
                         -Dsonar.projectKey=olive-front \
                         -Dsonar.sources=. \
-                        -Dsonar.host.url=sonar-LB-1171679121.ap-northeast-2.elb.amazonaws.com \
+                        -Dsonar.host.url=http://sonar-LB-1171679121.ap-northeast-2.elb.amazonaws.com \
                         -Dsonar.login=your-sonarqube-token'
                 }
             }
