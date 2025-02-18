@@ -25,59 +25,50 @@ pipeline {
         }
 
         // sonarqube test
-        // stage('SonarQube Scanner') {
-        //     steps {
-        //         withSonarQubeEnv('jg-sonarqube') {
-        //             sh 'npx sonar-scanner \
-        //                 -Dsonar.projectKey=olive-front \
-        //                 -Dsonar.sources=. \
-        //                 -Dsonar.host.url=http://sonar-LB-1171679121.ap-northeast-2.elb.amazonaws.com \
-        //                 -Dsonar.login=squ_defd65e305f5684bc10dd0e10f936c83ea846f74'
-        //         }
-        //     }
-        // }
+        stage('SonarQube Scanner') {
+            steps {
+                withSonarQubeEnv('jg-sonarqube') {
+                    sh 'npx sonar-scanner \
+                        -Dsonar.projectKey=olive-front \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://sonar-LB-1171679121.ap-northeast-2.elb.amazonaws.com \
+                        -Dsonar.login=squ_defd65e305f5684bc10dd0e10f936c83ea846f74'
+                }
+            }
+        }
 
         // dependency-check
-        // stage('OWASP Dependency-Check Vulnerabilities') {
-        //     steps {
-        //         dir("src"){
-        //             dependencyCheck additionalArguments: ''' 
-        //                 -o './'
-        //                 -s './'
-        //                 -f 'ALL' 
-        //                 --prettyPrint''', odcInstallation: 'owasp'
+        stage('OWASP Dependency-Check Vulnerabilities') {
+            steps {
+                dir("src"){
+                    dependencyCheck additionalArguments: ''' 
+                        -o './'
+                        -s './'
+                        -f 'ALL' 
+                        --prettyPrint''', odcInstallation: 'owasp'
 
-        //             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-        //         }
-        //     }
-        // }
+                    dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                }
+            }
+        }
 
-        // stage('Run Tests') {
-        //     steps {
-        //         sh 'npm run test'
-        //     }
-        // }
+        stage('Run Tests') {
+            steps {
+                sh 'npm run test'
+            }
+        }
 
-        // stage('Build') {
-        //     steps {
-        //         sh 'npm run build'
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
                 script {
                     docker.withRegistry("https://${ECR_REPO}/", '9b45eaf4-a184-44eb-ba8c-8e20a854de1b') {
                         myapp = docker.build('olive-front')  
-                    }
-                }
-            }
-        }
-
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry("https://${ECR_REPO}/", '9b45eaf4-a184-44eb-ba8c-8e20a854de1b') {
                         myapp.push("${IMAGE_TAG}")
                     }
                 }
