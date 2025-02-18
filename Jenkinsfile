@@ -74,7 +74,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Push Docker Image') {
             steps {
                 script {
                     docker.withRegistry("https://${ECR_REPO}/", '9b45eaf4-a184-44eb-ba8c-8e20a854de1b') {
