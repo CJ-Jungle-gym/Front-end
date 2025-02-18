@@ -28,7 +28,11 @@ pipeline {
         stage('SonarQube Scanner') {
             steps {
                 withSonarQubeEnv('jg-sonarqube') {
-                    sh "./gradlew sonar"
+                    sh 'npx sonar-scanner \
+                        -Dsonar.projectKey=olive-front \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://your-sonarqube-server:9000 \
+                        -Dsonar.login=your-sonarqube-token'
                 }
             }
         }
