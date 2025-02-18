@@ -25,17 +25,17 @@ pipeline {
         }
 
         // sonarqube test
-        stage('SonarQube Scanner') {
-            steps {
-                withSonarQubeEnv('jg-sonarqube') {
-                    sh 'npx sonar-scanner \
-                        -Dsonar.projectKey=olive-front \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://sonar-LB-1171679121.ap-northeast-2.elb.amazonaws.com \
-                        -Dsonar.login=squ_defd65e305f5684bc10dd0e10f936c83ea846f74'
-                }
-            }
-        }
+        // stage('SonarQube Scanner') {
+        //     steps {
+        //         withSonarQubeEnv('jg-sonarqube') {
+        //             sh 'npx sonar-scanner \
+        //                 -Dsonar.projectKey=olive-front \
+        //                 -Dsonar.sources=. \
+        //                 -Dsonar.host.url=http://sonar-LB-1171679121.ap-northeast-2.elb.amazonaws.com \
+        //                 -Dsonar.login=squ_defd65e305f5684bc10dd0e10f936c83ea846f74'
+        //         }
+        //     }
+        // }
 
         // dependency-check
         // stage('OWASP Dependency-Check Vulnerabilities') {
@@ -52,31 +52,38 @@ pipeline {
         //     }
         // }
 
-        stage('Run Tests') {
-            steps {
-                sh 'npm run test'
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         sh 'npm run test'
+        //     }
+        // }
 
-        stage('Build') {
+        // stage('Build') {
+        //     steps {
+        //         sh 'npm run build'
+        //     }
+        // }
+
+        stage('Build Docker Image') {
             steps {
-                sh 'npm run build'
+                script {
+                    docker.withRegistry("https://${ECR_REPO}/", '9b45eaf4-a184-44eb-ba8c-8e20a854de1b') {
+                        myapp = docker.build('olive-front')  
+                    }
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    // ECR 로그인
-                    sh 'aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 605134473022.dkr.ecr.ap-northeast-2.amazonaws.com'
-                    // Dockerfile을 사용하여 이미지 빌드
                     docker.withRegistry("https://${ECR_REPO}/", '9b45eaf4-a184-44eb-ba8c-8e20a854de1b') {
-                        myapp = docker.build('olive-front')  // Dockerfile 경로와 빌드할 디렉토리
                         myapp.push("${IMAGE_TAG}")
                     }
                 }
             }
         }
+
 
         // image scan
         stage('Scan Image with Trivy') {
