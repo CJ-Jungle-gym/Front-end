@@ -32,7 +32,7 @@ pipeline {
                         -Dsonar.projectKey=olive-front \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://sonar-LB-1171679121.ap-northeast-2.elb.amazonaws.com \
-                        -Dsonar.login=your-sonarqube-token'
+                        -Dsonar.login=squ_defd65e305f5684bc10dd0e10f936c83ea846f74'
                 }
             }
         }
