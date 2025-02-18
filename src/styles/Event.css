@@ -267,5 +267,39 @@
 }
 
 .noProducts {
-  color: black;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #555;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 80%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.noProducts-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #ff9900;
+}
+
+.noProducts-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #666;
+}
+
+.noProducts-subtext {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
 }

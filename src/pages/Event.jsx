@@ -128,7 +128,11 @@ function Event() {
             </div>
           </>
         ) : products.length === 0 ? (
-          <p className="noProducts">현재 등록된 이벤트 제품이 없습니다=.</p>
+          <div className="noProducts">
+            <span className="noProducts-icon">🎁</span>
+            <p className="noProducts-text">현재 등록된 이벤트 제품이 없습니다.</p>
+            <p className="noProducts-subtext">곧 새로운 제품이 추가될 예정이니 기대해 주세요! 💛</p>
+          </div>
         ) : (
           products.map((product) => (
             <div key={product.id} className="product-card">
