@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs "npm"
+    }
+
     environment {
         AWS_REGION = "ap-northeast-2"
         ECR_REPO = "605134473022.dkr.ecr.ap-northeast-2.amazonaws.com/olive-front"
