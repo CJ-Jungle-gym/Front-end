@@ -3,15 +3,14 @@ pipeline {
 
     environment {
         AWS_REGION = "ap-northeast-2"
-        AWS_ACCOUNT_ID = "123456789012"
-        ECR_REPO = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/my-react-app"
+        ECR_REPO = "605134473022.dkr.ecr.ap-northeast-2.amazonaws.com/olive-front"
         IMAGE_TAG = "latest"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/CJ-Jungle-gym/Front-end.git'
+                checkout scm
             }
         }
 
@@ -33,14 +32,14 @@ pipeline {
             }
         }
 
-        stage('Docker Build & Push') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    sh """
-                    aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REPO}
-                    docker build -t ${ECR_REPO}:${IMAGE_TAG} .
-                    docker push ${ECR_REPO}:${IMAGE_TAG}
-                    """
+                    // Dockerfile을 사용하여 이미지 빌드
+                    docker.withRegistry("https://${ECR_REPO}/", '9b45eaf4-a184-44eb-ba8c-8e20a854de1b') {
+                        myapp = docker.build('olive-front')  // Dockerfile 경로와 빌드할 디렉토리
+                        myapp.push("${IMAGE_TAG}")
+                    }
                 }
             }
         }
