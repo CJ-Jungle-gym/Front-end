@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Event.css";
-import { getProducts } from "../api/event";
+import { getEventProducts } from "../api/event";
 
 import eventBanner from "../assets/homeAssets/event-banner.jpg";
 import kpopStar from "../assets/eventAssets/kpop-star.jpg";
@@ -57,7 +57,7 @@ function Event() {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const data = await getProducts(); // ✅ 백엔드에서 이벤트 제품 가져오기
+        const data = await getEventProducts(); // ✅ 백엔드에서 이벤트 제품 가져오기
         setProducts(data.content || []);  // ✅ 백엔드 응답 데이터에서 content 배열 가져오기
       } catch (err) {
         console.error("❌ 이벤트 불러오기 실패:", err);
