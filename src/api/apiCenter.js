@@ -1,11 +1,12 @@
 import axios from "axios";
 
-// 기본 API 주소 (운영계)
+// ✅ 운영계 API 주소
 const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-// 이벤트계 API 주소
+
+// ✅ 이벤트계 API 주소
 const EVENT_API_URL = import.meta.env.VITE_EVENT_API_URL;
 
-// 운영계 API 인스턴스
+// 🔹 운영계 API 인스턴스
 export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -14,7 +15,7 @@ export const api = axios.create({
   withCredentials: true,
 });
 
-// 이벤트계 API 인스턴스
+// 🔹 이벤트계 API 인스턴스
 export const eventApi = axios.create({
   baseURL: EVENT_API_URL,
   headers: {
@@ -23,7 +24,7 @@ export const eventApi = axios.create({
   withCredentials: true,
 });
 
-// 요청 시 토큰 자동 추가
+// 🔐 요청 시 토큰 자동 추가
 [api, eventApi].forEach((instance) => {
   instance.interceptors.request.use(
     (config) => {
