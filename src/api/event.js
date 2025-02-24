@@ -1,4 +1,4 @@
-import { eventApi } from "./apiCenter";  // 이벤트계 API 사용
+import { eventApi } from "./apiCenter";
 
 // 이벤트 제품 목록 불러오기 (이벤트계 API 호출)
 export const getEventProducts = async () => {
