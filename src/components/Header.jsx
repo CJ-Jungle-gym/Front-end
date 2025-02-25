@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Header.css";
 
@@ -8,12 +8,35 @@ function Header() {
   const [showStore, setShowStore] = useState(false);
   const [showRecent, setShowRecent] = useState(false);
 
+  // 현재 접속한 도메인을 확인
+  const hostname = window.location.hostname;
+  // hostname이 "event.junglegymstore.shop"이면 이벤트 환경으로 판단
+  const isEventEnvironment = hostname === "event.junglegymstore.shop";
+
+  // 로고 클릭 시 처리: 이벤트 환경이면 운영계 도메인으로 리다이렉트
+  const handleLogoClick = () => {
+    if (isEventEnvironment) {
+      window.location.href = "https://prod.junglegymstore.shop";
+    } else {
+      navigate("/");
+    }
+  };
+
+  // 로그인 버튼 클릭 시 처리: 이벤트 환경이면 운영계 로그인 페이지로 리다이렉트
+  const handleLoginClick = () => {
+    if (isEventEnvironment) {
+      window.location.href = "https://prod.junglegymstore.shop/login";
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <header className="header">
       {/* 상단 네비게이션 */}
       <div className="top-nav">
         <button onClick={() => navigate("/signup")}>회원가입</button> | 
-        <button onClick={() => navigate("/login")}>로그인</button> | 
+        <button onClick={handleLoginClick}>로그인</button> | 
         <button onClick={() => navigate("/cart")}>장바구니</button> | 
         <button onClick={() => navigate("/orders")}>주문배송</button> | 
         <button onClick={() => navigate("/support")}>고객센터</button> | 
@@ -27,8 +50,8 @@ function Header() {
             src="https://static.oliveyoung.co.kr/pc-static-root/image/comm/h1_logo.png" 
             alt="올리브영 로고" 
             className="logo"
-            onClick={() => navigate("/")} 
-            style={{ cursor: "pointer" }} // ✅ 클릭 가능한 스타일 추가
+            onClick={handleLogoClick} 
+            style={{ cursor: "pointer" }}
         />
 
         <div className="search-bar">
@@ -61,7 +84,10 @@ function Header() {
             <span className="mymenu_layer">올영매장찾기 ⌵</span> |
             {showStore && (
               <div className="dropdown-content">
-                <p className="store_desc">지금 찾는 상품, <span>가까운 매장에서 재고 확인</span><br />올영매장에서 재고 확인하고, 빠르게 픽업 주문까지!</p>
+                <p className="store_desc">
+                  지금 찾는 상품, <span>가까운 매장에서 재고 확인</span><br />
+                  올영매장에서 재고 확인하고, 빠르게 픽업 주문까지!
+                </p>
                 <button className="mymenu_btn">로그인</button>
               </div>
             )}
