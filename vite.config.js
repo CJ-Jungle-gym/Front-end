@@ -4,6 +4,17 @@ import { configDefaults } from 'vitest/config'
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    port: 5173,
+    open: true
+  },
+  build: {
+    outDir: 'dist', // 빌드 결과물 위치
+  },
+  preview: {
+    port: 4173,
+    open: true
+  },
   test: {
     globals: true,
     environment: 'jsdom',
