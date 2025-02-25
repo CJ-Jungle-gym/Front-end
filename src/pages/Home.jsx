@@ -12,7 +12,7 @@ import image8 from "../assets/homeAssets/main-banner8.png";
 import image9 from "../assets/homeAssets/main-banner9.png";
 import image10 from "../assets/homeAssets/main-banner10.png";
 import image11 from "../assets/homeAssets/main-banner11.png";
-import eventBanner from "../assets/homeAssets/event-banner.jpg"; // 콜라보 이벤트 배경 이미지
+import eventBanner from "../assets/homeAssets/event-banner.jpg";
 
 const bannerImages = [
   image1, image2, image3, image4, image5, image6,
