@@ -27,9 +27,22 @@ function Home() {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, []);
+
+  // 현재 호스트명에 따라 운영계와 이벤트계를 구분
+  const hostname = window.location.hostname;
+  const isProd = hostname === "prod.junglegymstore.shop";
+
+  const handleEventClick = () => {
+    if (isProd) {
+      // 운영계에서는 외부 이벤트 도메인으로 리디렉션
+      window.location.href = "http://event.junglegymstore.shop/event";
+    } else {
+      // 이벤트계나 개발 환경에서는 내부 라우팅 사용
+      navigate("/event");
+    }
+  };
 
   return (
     <div className="home">
@@ -57,7 +70,7 @@ function Home() {
               매달 한류 스타와 함께하는 특별한 콜라보레이션!<br />
               오직 올리브영에서만 만나볼 수 있는 한정판 굿즈와 혜택을 놓치지 마세요.
             </p>
-            <button className="event-button" onClick={() => navigate("/event")}>
+            <button className="event-button" onClick={handleEventClick}>
               이벤트 확인하기 →
             </button>
           </div>
