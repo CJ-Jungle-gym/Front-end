@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { login } from "../api/auth";
+import { getLoginUrl, login } from "../api/auth";
 import "../styles/Login.css";
 import cjOneLogo from "../assets/loginAssets/cjone-logo.png";
-import kakaoIcon from "../assets/loginAssets/kakao-icon.png";
+import cognitoIcon from "../assets/loginAssets/cognito-logo.svg";
+import kakaoIcon from "../assets/loginAssets/kakao-logo.png";
+
 
 function Login() {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -43,6 +45,10 @@ function Login() {
     }
   };
 
+  const handleCognitoLogin = () => {
+    window.location.href = getLoginUrl();  // Cognito 로그인 페이지로 이동
+  };
+
   return (
     <div className="login-container">
       <div className="login-box">
@@ -80,6 +86,13 @@ function Login() {
           </div>
 
           <button type="submit" className="login-button">로그인</button>
+
+          {/* Cognito 로그인 버튼 */}
+          <button type="button" className="cognito-button" onClick={handleCognitoLogin}>
+            <img src={cognitoIcon} alt="Cognito 로그인" className="cognito-icon" />
+            Cognito 로그인
+          </button>
+
           <button type="button" className="kakao-button">
             <img src={kakaoIcon} alt="카카오 로그인" className="kakao-icon" />
             카카오로 로그인

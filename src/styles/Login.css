@@ -95,6 +95,29 @@
   .login-button:hover {
     background-color: #333;
   }
+
+  /* 카카오 로그인 버튼 */
+  .cognito-button {
+    width: 100%;
+    background-color: #ff5e00;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cognito-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
   
   /* 카카오 로그인 버튼 */
   .kakao-button {
