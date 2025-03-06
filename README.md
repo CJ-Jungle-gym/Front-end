@@ -8,14 +8,16 @@
 
 ## 📌 **프로젝트 개요**
 
-* **기술 스택** : React, Vite, Axios, AWS Cognito
-* **CI/CD 파이프라인** : Jenkins + ArgoCD + AWS ECR
-* **배포 환경** :
-  * 운영계: **AWS EKS**
-  * 이벤트계: **AWS ECS**
-* **특징** :
-  * 운영계와 이벤트계를 분리하여 서비스 제공
-  * AWS Cognito를 활용한 사용자 인증
+* **기술 스택**: React, Vite, Axios, AWS Cognito, Docker, Nginx
+* **CI/CD 파이프라인**: Jenkins + ArgoCD + AWS ECR
+* **배포 환경**:
+  * **운영계**: AWS EKS
+  * **이벤트계**: AWS ECS
+* **특징**:
+  * **운영계와 이벤트계를 분리**하여 서비스 제공
+  * **AWS Cognito**를 활용한 사용자 인증
+  * **Docker** 컨테이너를 활용한 배포 자동화
+  * **Nginx** 기반 정적 파일 서빙 및 라우팅 처리
   * 환경 변수 설정을 통해 운영/이벤트 API 분리
 
 ---
@@ -23,7 +25,7 @@
 ## 📂 **프로젝트 구조**
 
 ```bash
-JUNGLE-GYM-FT/
+JUNGLE-GYM-FT/
 │── public/                 # 정적 파일 (favicon, robots.txt 등)
 │── src/
 │   ├── assets/             # 이미지, 아이콘 등
