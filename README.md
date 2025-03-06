@@ -11,12 +11,12 @@
 * **기술 스택** : React, Vite, Axios, AWS Cognito
 * **CI/CD 파이프라인** : Jenkins + ArgoCD + AWS ECR
 * **배포 환경** :
-* 운영계: **AWS EKS**
-* 이벤트계: **AWS ECS**
+  * 운영계: **AWS EKS**
+  * 이벤트계: **AWS ECS**
 * **특징** :
-* 운영계와 이벤트계를 분리하여 서비스 제공
-* AWS Cognito를 활용한 사용자 인증
-* 환경 변수 설정을 통해 운영/이벤트 API 분리
+  * 운영계와 이벤트계를 분리하여 서비스 제공
+  * AWS Cognito를 활용한 사용자 인증
+  * 환경 변수 설정을 통해 운영/이벤트 API 분리
 
 ---
 
